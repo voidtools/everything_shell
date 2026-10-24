@@ -12,6 +12,10 @@ The title is a string resource and follows the Windows display language.
 
 On This PC, which is not a file system folder, it opens Everything with an empty search (`-search ""`).
 
+## Download
+
+https://github.com/voidtools/everything_shell/releases/
+
 ## How it works
 
 - `EverythingShell.dll` is a small COM server implementing `IExplorerCommand` (and `IObjectWithSite`, to find the current folder when the background is clicked). It is written in C and built without the C runtime.
