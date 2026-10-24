@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+  xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
+  xmlns:desktop10="http://schemas.microsoft.com/appx/manifest/desktop/windows10/10"
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  IgnorableNamespaces="uap rescap desktop4 desktop5 desktop10 com">
+
+  <!-- Publisher must be exactly the Subject of the certificate used to sign the msix. -->
+  <Identity Name="voidtools.EverythingShell" Publisher="CN=voidtools PTY LTD, O=voidtools PTY LTD, L=Wilmington, S=South Australia, C=AU, SERIALNUMBER=624 373 397, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=AU" Version="1.0.0.0" ProcessorArchitecture="x64" />
+
+  <Properties>
+    <DisplayName>Everything Shell Extension</DisplayName>
+    <PublisherDisplayName>voidtools</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.22000.0" MaxVersionTested="10.0.26100.0" />
+  </Dependencies>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+
+  <Applications>
+    <Application Id="EverythingShell" Executable="EverythingShellStub.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements
+        DisplayName="Everything Shell Extension"
+        Description="Search Everything context menu"
+        BackgroundColor="transparent"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png"
+        AppListEntry="none" />
+      <Extensions>
+        <desktop4:Extension Category="windows.fileExplorerContextMenus">
+          <desktop4:FileExplorerContextMenus>
+            <desktop5:ItemType Type="Directory">
+              <desktop5:Verb Id="EverythingShell" Clsid="6F868C19-C17D-4AD4-BF42-75354AFD2BA5" />
+            </desktop5:ItemType>
+            <desktop10:ItemType Type="Drive">
+              <desktop10:Verb Id="EverythingShellDrive" Clsid="6F868C19-C17D-4AD4-BF42-75354AFD2BA5" />
+            </desktop10:ItemType>
+            <desktop5:ItemType Type="Directory\Background">
+              <desktop5:Verb Id="EverythingShellBackground" Clsid="6F868C19-C17D-4AD4-BF42-75354AFD2BA5" />
+            </desktop5:ItemType>
+          </desktop4:FileExplorerContextMenus>
+        </desktop4:Extension>
+        <com:Extension Category="windows.comServer">
+          <com:ComServer>
+            <com:SurrogateServer DisplayName="Everything Shell Extension">
+              <com:Class Id="6F868C19-C17D-4AD4-BF42-75354AFD2BA5" Path="EverythingShell.dll" ThreadingModel="STA" />
+            </com:SurrogateServer>
+          </com:ComServer>
+        </com:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+</Package>
