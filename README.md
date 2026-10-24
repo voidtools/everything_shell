@@ -79,3 +79,6 @@ The dll and exe version is set in `EverythingShell\src\version.h`. The `Identity
 ## License
 
 MIT, see [LICENSE](LICENSE).
+
+## See also
+https://www.voidtools.com/forum/viewtopic.php?t=18009
